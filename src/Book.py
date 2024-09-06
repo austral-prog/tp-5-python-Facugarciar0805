@@ -2,7 +2,7 @@
 
 
 class Book:
-    def __init__(self, isbn, title, author, available=True, checkout_num=0)->None:
+    def __init__(self, isbn:str, title:str, author:str, available:bool=True, checkout_num:int=0)->None:
         self.__isbn : str= isbn
         self.__title : str= title
         self.__author : str= author
@@ -26,15 +26,15 @@ class Book:
         return self.__checkout_num
 
     # Setters
-    def set_available(self, available)->None:
+    def set_available(self, available:bool)->None:
         self.__available = available
 
-    def increment_checkout_num(self)->int:
+    def increment_checkout_num(self)->None:
         self.__checkout_num += 1
 
     # Utils
     def __str__(self) -> str:
         return f"ISBN: {self.__isbn}, Title: {self.__title}, Author: {self.__author}"
 
-    def __eq__(self, other)->bool:
+    def __eq__(self, other:"Book")->bool:
         return other.get_isbn() == self.get_isbn()

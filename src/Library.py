@@ -1,13 +1,13 @@
 from src.Book import Book
 from src.User import User
-
+from typing import List
 
 class Library:
-    def __init__(self):
-        self.__books :list= []
-        self.__users :list= []
-        self.__checked_out_books :list = []
-        self.__checked_in_books :list= []
+    def __init__(self)->None:
+        self.__books : List[Book]= []
+        self.__users :List[User]= []
+        self.__checked_out_books :List[List[str]] = []
+        self.__checked_in_books :List[List[str]]= []
 
     # Getters
     def get_books(self)->list:
@@ -23,7 +23,7 @@ class Library:
         return self.__checked_in_books
 
     # 1.1 Add Book
-    def add_book(self, isbn, title, author)->None:
+    def add_book(self, isbn:str, title:str, author:str)->None:
         for book in self.__books:
             if book.get_isbn() == isbn:
                 pass
@@ -35,7 +35,7 @@ class Library:
             print(book.__str__())
 
     # 2.1 Check out book
-    def check_out_book(self, isbn, dni, due_date)-> str:
+    def check_out_book(self, isbn:str, dni:str, due_date:str)-> str:
         for book in self.__books:
             if book.get_isbn() == isbn:
                 for user in self.__users:
@@ -52,7 +52,7 @@ class Library:
         return f"Unable to find the data for the values: ISBN {isbn} and DNI: {dni}"
 
     # 2.2 Check in book
-    def check_in_book(self, isbn, dni, returned_date)->str:
+    def check_in_book(self, isbn:str, dni:str, returned_date:str)->str:
         for book in self.__books:
             if book.get_isbn() == isbn:
                 if book.is_available()==False:
@@ -71,7 +71,7 @@ class Library:
         return f"Book {isbn} is not available"
 
     # Utils
-    def add_user(self, dni, name)->None:
+    def add_user(self, dni:str, name:str)->None:
         for user in self.__users:
             if user.get_dni() == dni:
                 pass
