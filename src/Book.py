@@ -36,5 +36,7 @@ class Book:
     def __str__(self) -> str:
         return f"ISBN: {self.__isbn}, Title: {self.__title}, Author: {self.__author}"
 
-    def __eq__(self, other:"Book")->bool:
+    def __eq__(self, other: object)->bool:
+        if not isinstance(other, Book):
+            return False
         return other.get_isbn() == self.get_isbn()
